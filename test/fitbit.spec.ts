@@ -40,7 +40,8 @@ describe('FitBit', () => {
 			json: async () => fakeAuthResponse,
 		} as Response);
 
-		const result = await fitbit['authorize']();
+		// @ts-expect-error - the property is private
+		const result = await fitbit.authorize();
 
 		expect(result).toEqual(fakeAuthResponse);
 		expect(mockFetch).toHaveBeenCalledOnce();
@@ -60,7 +61,8 @@ describe('FitBit', () => {
 			text: async () => 'Invalid code',
 		} as Response);
 
-		await expect(fitbit['authorize']()).rejects.toThrowError(
+		// @ts-expect-error - the property is private
+		await expect(fitbit.authorize()).rejects.toThrowError(
 			/Failed to get Fitbit access token/,
 		);
 	});
@@ -76,7 +78,8 @@ describe('FitBit', () => {
 			json: async () => fakeRefreshResponse,
 		} as Response);
 
-		const result = await fitbit['refreshToken']('old-refresh-token');
+		// @ts-expect-error - the property is private
+		const result = await fitbit.refreshToken('old-refresh-token');
 
 		expect(result).toEqual(fakeRefreshResponse);
 		expect(mockFetch).toHaveBeenCalledOnce();
@@ -97,7 +100,8 @@ describe('FitBit', () => {
 		} as Response);
 
 		await expect(
-			fitbit['refreshToken']('old-refresh-token'),
+			// @ts-expect-error - the property is private
+			fitbit.refreshToken('old-refresh-token'),
 		).rejects.toThrowError(/Failed to refresh Fitbit token/);
 
 		expect(mockEnv.HEVY_FITBIT_AUTH_TOKENS.delete).toHaveBeenCalledWith(
@@ -139,8 +143,8 @@ describe('FitBit', () => {
 			} as Response) // first call
 			.mockResolvedValueOnce({ ok: true, json: async () => ({}) } as Response); // second call after refresh
 
-		// Mock refreshToken to resolve immediately
-		fitbit['refreshToken'] = vi.fn().mockResolvedValue({
+		// @ts-expect-error - the property is private
+		fitbit.refreshToken = vi.fn().mockResolvedValue({
 			access_token: 'new-access-token',
 			refresh_token: 'new-refresh-token',
 		});
@@ -151,7 +155,8 @@ describe('FitBit', () => {
 		});
 
 		expect(result).toBe('Success');
-		expect(fitbit['refreshToken']).toHaveBeenCalledWith('refresh-token');
+		// @ts-expect-error - the property is private
+		expect(fitbit.refreshToken).toHaveBeenCalledWith('refresh-token');
 		expect(mockFetch).toHaveBeenCalledTimes(2);
 	});
 });

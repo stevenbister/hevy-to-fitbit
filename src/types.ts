@@ -32,7 +32,7 @@ export type AuthTokenResponse = {
 	expires_in: number;
 	refresh_token: string;
 	scope: string;
-	token_type: "Bearer";
+	token_type: 'Bearer';
 	user_id: string;
 };
 
@@ -41,6 +41,6 @@ export type RefreshTokenResponse = {
 	expires_in: number;
 	refresh_token: string;
 	scope: string;
-	token_type: "Bearer";
+	token_type: 'Bearer';
 	user_id: string;
 };

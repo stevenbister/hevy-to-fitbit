@@ -1,14 +1,10 @@
 export const getDateAndTimeFromString = (dateTimeString: string) => {
 	const date = new Date(dateTimeString);
 
-	const [datePart, timePart] = date.toISOString().split("T");
+	const [datePart, timePart] = date.toISOString().split('T');
 	const formattedDate = datePart;
 
-	const formattedTime = timePart
-		.split(".")[0]
-		.split(":")
-		.slice(0, 2)
-		.join(":");
+	const formattedTime = timePart.split('.')[0].split(':').slice(0, 2).join(':');
 
 	return {
 		date: formattedDate,
