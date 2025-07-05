@@ -2,6 +2,9 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { getWorkout } from '../src/get-workout';
 import type { Workout } from '../src/types';
 
+const mockFetch = vi.fn();
+globalThis.fetch = mockFetch;
+
 const setup = async ({
 	workoutId,
 	apiKey,
@@ -14,13 +17,10 @@ const setup = async ({
 		data?: Workout;
 	};
 }) => {
-	// @ts-ignore
-	global.fetch = vi.fn(() =>
-		Promise.resolve({
-			ok: mockResponse?.ok ?? true,
-			json: () => Promise.resolve(mockResponse?.data ?? null),
-		}),
-	);
+	mockFetch.mockResolvedValue({
+		ok: mockResponse?.ok ?? true,
+		json: () => Promise.resolve(mockResponse?.data ?? null),
+	});
 
 	return await getWorkout(workoutId, apiKey);
 };
