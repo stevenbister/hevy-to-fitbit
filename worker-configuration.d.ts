@@ -4,6 +4,11 @@
 declare namespace Cloudflare {
 	interface Env {
         HEVY_API_KEY: string;
+        HEVY_FITBIT_AUTH_TOKENS: KVNamespace<string>;
+        FITBIT_CLIENT_ID: string;
+        FITBIT_SECRET: string;
+		FITBIT_AUTH_CODE: string;
+		FITBIT_CODE_VERIFIER: string;
 	}
 }
 interface Env extends Cloudflare.Env {}

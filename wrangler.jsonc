@@ -9,7 +9,14 @@
 	"compatibility_date": "2025-07-04",
 	"observability": {
 		"enabled": true
-	}
+	},
+
+	"kv_namespaces": [
+		{
+			"binding": "HEVY_FITBIT_AUTH_TOKENS",
+			"id": "31521cf2b25a492c836419cab3cbf251"
+		}
+	]
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
