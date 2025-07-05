@@ -1,3 +1,4 @@
+import { FitBit } from './fitbit';
 import { getWorkout } from './get-workout';
 import type { WebhookPayload } from './types';
 
@@ -19,6 +20,12 @@ export default {
 			);
 
 			console.log({ workout });
+
+			const fitbit = new FitBit(env);
+			await fitbit.createActivity({
+				startTime: workout.start_time,
+				endTime: workout.end_time,
+			});
 
 			return new Response('Webhook event processed successfully.', {
 				status: 200,

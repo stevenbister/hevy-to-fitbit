@@ -13,11 +13,20 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 9
+
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pnpm install
+
       - name: Setup Biome
         uses: biomejs/setup-biome@v2
         with:
           version: latest
+
       - name: Run Biome
         run: biome ci .
+
+      - name: Test
+        run: pnpm test

@@ -1,5 +1,6 @@
 import { env } from 'cloudflare:test';
 import { expect, it, vi } from 'vitest';
+import { FitBit } from '../src/fitbit';
 import * as hevy from '../src/get-workout';
 import worker from '../src/index';
 import type { Workout } from '../src/types';
@@ -58,6 +59,9 @@ it('returns 200 for requests with valid payload and successful getWorkout call',
 	getWorkoutSpy.mockResolvedValue({
 		title: 'mock-workout-id',
 	} as Workout);
+
+	const createActivitySpy = vi.spyOn(FitBit.prototype, 'createActivity');
+	createActivitySpy.mockResolvedValue('Success');
 
 	const response = await worker.fetch(request, env);
 

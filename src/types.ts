@@ -26,3 +26,21 @@ export type Workout = {
 		}[];
 	}[];
 };
+
+export type AuthTokenResponse = {
+	access_token: string;
+	expires_in: number;
+	refresh_token: string;
+	scope: string;
+	token_type: 'Bearer';
+	user_id: string;
+};
+
+export type RefreshTokenResponse = {
+	access_token: string;
+	expires_in: number;
+	refresh_token: string;
+	scope: string;
+	token_type: 'Bearer';
+	user_id: string;
+};
