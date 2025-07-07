@@ -100,7 +100,7 @@ export class FitBit {
 		const durationMillis = getDurationInMs(startTime, endTime).toString();
 
 		const params = new URLSearchParams({
-			activityId: '2050',
+			activityId: '91042',
 			durationMillis,
 			startTime: time,
 			date,
