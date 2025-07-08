@@ -1,15 +1,24 @@
 export const getDateAndTimeFromString = (dateTimeString: string) => {
-	const date = new Date(dateTimeString);
+	const d = new Date(dateTimeString);
+	const en_GB = 'en-GB';
+	const timeZone = 'Europe/London';
 
-	const [datePart, timePart] = date.toISOString().split('T');
-	const formattedDate = datePart;
+	const [day, month, year] = d
+		.toLocaleDateString(en_GB, {
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit',
+			timeZone,
+		})
+		.split('/');
+	const date = `${year}-${month}-${day}`;
 
-	const formattedTime = timePart.split('.')[0].split(':').slice(0, 2).join(':');
+	const time = d.toLocaleTimeString(en_GB, {
+		timeStyle: 'short',
+		timeZone,
+	});
 
-	return {
-		date: formattedDate,
-		time: formattedTime,
-	};
+	return { date, time };
 };
 
 export const getDurationInMs = (start: string, end: string) => {

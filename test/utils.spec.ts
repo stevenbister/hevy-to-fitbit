@@ -9,7 +9,7 @@ describe('getDateAndTimeFromString', () => {
 
 	it('returns date in HH:mm format', () => {
 		const { time } = getDateAndTimeFromString('2025-07-04T05:41:12+00:00');
-		expect(time).toBe('05:41');
+		expect(time).toBe('06:41');
 	});
 });
 
