@@ -14,6 +14,8 @@ export default {
 		try {
 			// Access the payload of the webhook event
 			const payload: WebhookPayload = await request.json();
+			console.log('Received payload:', payload);
+			
 			const workout = await getWorkout(
 				payload.payload.workoutId,
 				env.HEVY_API_KEY,
@@ -30,7 +32,9 @@ export default {
 			return new Response('Webhook event processed successfully.', {
 				status: 200,
 			});
-		} catch {
+		} catch (error) {
+			console.error('Failed to process webhook event.', error);
+
 			return new Response('Failed to process webhook event.', {
 				status: 500,
 			});
