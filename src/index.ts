@@ -4,7 +4,7 @@ import type { WebhookPayload } from "./types";
 
 export default {
 	async fetch(request, env): Promise<Response> {
-		console.log("Received request:", request);
+		console.log("Received request:", JSON.stringify(request));
 		// Verify that the request method is POST (forwarded by Hookdeck)
 		if (request.method !== "POST") {
 			return new Response("Invalid request method.", { status: 405 });
