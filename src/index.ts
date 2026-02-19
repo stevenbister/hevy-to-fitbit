@@ -4,7 +4,6 @@ import type { WebhookPayload } from "./types";
 
 export default {
 	async fetch(request, env): Promise<Response> {
-		console.log("Received request:", JSON.stringify(request));
 		// Verify that the request method is POST (forwarded by Hookdeck)
 		if (request.method !== "POST") {
 			return new Response("Invalid request method.", { status: 405 });
@@ -15,10 +14,10 @@ export default {
 		try {
 			// Access the payload of the webhook event
 			const payload: WebhookPayload = await request.json();
-			console.log("Received payload:", payload);
+			console.log("Received payload:", JSON.stringify(payload));
 
 			const workout = await getWorkout(
-				payload.payload.workoutId,
+				payload.workoutId,
 				env.HEVY_API_KEY,
 			);
 

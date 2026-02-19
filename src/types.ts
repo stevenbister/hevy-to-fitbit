@@ -1,8 +1,5 @@
 export type WebhookPayload = {
-	id: string;
-	payload: {
 		workoutId: string;
-	};
 };
 
 export type Workout = {
